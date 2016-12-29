@@ -7,7 +7,7 @@ from bitarray import bitarray
 pygame.init()
 pygame.font.init()
 import pickle
-
+import copy
 
 size = width, height = 320, 240
 
@@ -84,7 +84,7 @@ def image_prev():
         image_idx = 0
 
 def copy_current_image(images, image_idx):
-    images.insert(image_idx+1, images[image_idx])
+    images.insert(image_idx+1, copy.copy(images[image_idx]))
     return images
 
 
