@@ -83,6 +83,11 @@ def image_prev():
     if image_idx < 0:
         image_idx = 0
 
+def copy_current_image(images, image_idx):
+    images.insert(image_idx+1, images[image_idx])
+    return images
+
+
 def draw_image(screen, images, number=0):
     for y in range(sy):
         for x in range(sx):
@@ -139,6 +144,9 @@ while 1:
             if event.unicode == 'n':
                 image_idx +=1
                 image_idx = image_idx % len(images)
+            if event.unicode == 'c':
+                # copy current image
+                images = copy_current_image(images, image_idx)
             if event.unicode == 'p':
                 image_idx -=1
                 if image_idx < 0:
