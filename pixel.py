@@ -98,11 +98,11 @@ def save_images(images, filename='test.h', pickle_name='test.pickle'):
     with open(filename, 'w') as f:
         f.write("static const unsigned char PROGMEM animation[] = {")
         for image in images:
-            for x in range(8):
+            for x in range(0, sx*sy, 8):
                 b = bitarray(image[x:x+8])
                 f.write(hex(int.from_bytes(b.tobytes(),  byteorder='little')))
                 f.write(",")
-        f.write("};")
+        f.write("};\n")
 
     # write pickle
     with open(pickle_name, 'wb') as f:
