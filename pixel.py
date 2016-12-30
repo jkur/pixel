@@ -64,6 +64,22 @@ def draw_coord(screen, pos):
     #print ("Pos:", pos)
 
 
+def shift_image_right(image):
+    shifted_image = [False for x in range(sx*sy)]
+    for y in range(1,sy):
+        for x in range(1,sx):
+            shifted_image[y*sx+x] = image[y*sx+(x-1)]
+    return shifted_image
+
+def shift_image_left(image):
+    shifted_image = [False for x in range(sx*sy)]
+    for y in range(0,sy-1):
+        for x in range(0,sx-1):
+            shifted_image[y*sx+x] = image[y*sx+(x+1)]
+    return shifted_image
+
+
+
 def add_image(images):
     image = [False for x in range(sx*sy)]
     images.append(image)
@@ -139,6 +155,10 @@ while 1:
                 print("images:", images)
             if event.unicode == '+':
                 images = add_image(images)
+            if event.unicode == 'd':
+                images[image_idx] = shift_image_right(images[image_idx])
+            if event.unicode == 'a':
+                images[image_idx] = shift_image_left(images[image_idx])
             if event.unicode == '-':
                 images = remove_image(images)
             if event.unicode == 'n':
