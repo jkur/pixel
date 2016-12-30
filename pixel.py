@@ -66,14 +66,14 @@ def draw_coord(screen, pos):
 
 def shift_image_right(image):
     shifted_image = [False for x in range(sx*sy)]
-    for y in range(1,sy):
+    for y in range(0,sy):
         for x in range(1,sx):
             shifted_image[y*sx+x] = image[y*sx+(x-1)]
     return shifted_image
 
 def shift_image_left(image):
     shifted_image = [False for x in range(sx*sy)]
-    for y in range(0,sy-1):
+    for y in range(0,sy):
         for x in range(0,sx-1):
             shifted_image[y*sx+x] = image[y*sx+(x+1)]
     return shifted_image
